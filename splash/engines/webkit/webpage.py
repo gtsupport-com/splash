@@ -154,9 +154,10 @@ class WebkitWebPage(QWebPage):
                     <p>{0.type} error #{0.code}</p>
                 </body></html>""".format(self.error_info)
 
-            errorPage = sip.cast(errorPage, QWebPage.ErrorPageExtensionReturn)
-            errorPage.content = QByteArray(content.encode('utf-8'))
-            return True
+            # errorPage = sip.cast(errorPage, QWebPage.ErrorPageExtensionReturn)
+            # errorPage.content = QByteArray(content.encode('utf-8'))
+            # return True
+            return False
 
         # XXX: this method always returns True, even if we haven't
         # handled the extension. Is it correct? When can this method be

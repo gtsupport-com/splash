@@ -217,6 +217,12 @@ class ProxiedQNetworkAccessManager(QNetworkAccessManager):
 
         reply.metaDataChanged.connect(self._on_reply_headers)
         reply.downloadProgress.connect(self._on_reply_download_progress)
+
+        # Prevent weird errors from aborts/empty URL's
+        newUrl = request.url().url()
+        if newUrl == '':
+            reply.abort()
+
         return reply
 
     def _set_reply_timeout(self, reply, timeout_ms):
